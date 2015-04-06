@@ -38,7 +38,7 @@ public class RiotApiConnection {
 
         try {
 
-            System.out.println(url);
+            //System.out.println(url);
             URL obj = new URL(url.replaceAll(" ", "%20"));
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

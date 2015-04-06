@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class Game {
 
     private final int NUMPARTICIPANTS = 10;
@@ -78,4 +80,17 @@ public class Game {
 
     }
 
+    /*@Override
+    public String toString() {
+        return "Game{" +
+                "NUMPARTICIPANTS=" + NUMPARTICIPANTS +
+                ", NUMTEAMS=" + NUMTEAMS +
+                ", matchId=" + matchId +
+                ", region='" + region + '\'' +
+                ", matchCreation=" + matchCreation +
+                ", matchDuration=" + matchDuration +
+                ", participants=" + Arrays.toString(participants) +
+                ", teams=" + Arrays.toString(teams) +
+                '}';
+    }*/
 }

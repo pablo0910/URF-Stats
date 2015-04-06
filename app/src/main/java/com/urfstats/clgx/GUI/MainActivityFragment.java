@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.urfstats.clgx.LoLData.Game;
 import com.urfstats.clgx.LoLData.StaticData;
+import com.urfstats.clgx.LoLData.URFGames;
 import com.urfstats.clgx.R;
 
 public class MainActivityFragment extends Fragment {
@@ -36,6 +38,8 @@ public class MainActivityFragment extends Fragment {
 
         MainActivityFragment.GetStaticData staticData = new GetStaticData();
         staticData.execute();
+
+        URFGames games = new URFGames();
 
     }
 

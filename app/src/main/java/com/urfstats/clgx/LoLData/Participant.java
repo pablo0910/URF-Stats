@@ -3,6 +3,8 @@ package com.urfstats.clgx.LoLData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class Participant {
 
     private final int NUMITEMS = 7;
@@ -44,7 +46,6 @@ public class Participant {
     private ParticipantTimelineData creepsPerMinDeltas;
     private ParticipantTimelineData csDiffPerMinDeltas;
     private ParticipantTimelineData goldPerMinDeltas;
-    private ParticipantTimelineData assistedLaneKDDeltas;
 
     public Participant(JSONObject participant) {
 
@@ -92,9 +93,8 @@ public class Participant {
             this.role = timeline.getString("role");
             this.lane = timeline.getString("lane");
             this.creepsPerMinDeltas = new ParticipantTimelineData(timeline.getJSONObject("creepsPerMinDeltas"));
-            this.csDiffPerMinDeltas = new ParticipantTimelineData(timeline.getJSONObject("csDiffPerMinDeltas"));
+            if (timeline.has("csDiffPerMinDeltas")) this.csDiffPerMinDeltas = new ParticipantTimelineData(timeline.getJSONObject("csDiffPerMinDeltas"));
             this.goldPerMinDeltas = new ParticipantTimelineData(timeline.getJSONObject("goldPerMinDeltas"));
-            this.assistedLaneKDDeltas = new ParticipantTimelineData(timeline.getJSONObject("assistedLaneKillsPerMinDeltas"), timeline.getJSONObject("assistedLaneDeathsPerMinDeltas"));
 
         } catch (JSONException e) {
 
@@ -139,29 +139,44 @@ public class Participant {
 
         }
 
-        public ParticipantTimelineData(JSONObject data1, JSONObject data2) {
-
-            this.tenToTwenty = -1;
-            this.thirtyToEnd = -1;
-            this.twentyToThirty = -1;
-            this.zeroToTen = -1;
-
-            try {
-
-                if (data1.has("zeroToTen")) this.zeroToTen = data1.getDouble("zeroToTen") / data2.getDouble("zeroToTen");
-                if (data1.has("tenToTwenty")) this.tenToTwenty = data1.getDouble("tenToTwenty") / data2.getDouble("tenToTwenty");
-                if (data1.has("twentyToThirty")) this.twentyToThirty = data1.getDouble("twentyToThirty") / data2.getDouble("twentyToThirty");
-                if (data1.has("thirtyToEnd")) this.thirtyToEnd = data1.getDouble("thirtyToEnd") / data2.getDouble("thirtyToEnd");
-
-            } catch (JSONException e) {
-
-                System.err.println("Error: "+e);
-
-            }
-
-        }
-
     }
 
-
+    /*@Override
+    public String toString() {
+        return "Participant{" +
+                "NUMITEMS=" + NUMITEMS +
+                ", participantId=" + participantId +
+                ", championId=" + championId +
+                ", highestAchievedSeasonTier='" + highestAchievedSeasonTier + '\'' +
+                ", teamId=" + teamId +
+                ", role='" + role + '\'' +
+                ", lane='" + lane + '\'' +
+                ", kills=" + kills +
+                ", deaths=" + deaths +
+                ", assists=" + assists +
+                ", champLevel=" + champLevel +
+                ", doubleKills=" + doubleKills +
+                ", goldEarned=" + goldEarned +
+                ", goldSpent=" + goldSpent +
+                ", inhibitorKills=" + inhibitorKills +
+                ", items=" + Arrays.toString(items) +
+                ", largestCriticalStrike=" + largestCriticalStrike +
+                ", largestKillingSpree=" + largestKillingSpree +
+                ", largestMultiKill=" + largestMultiKill +
+                ", minionsKilled=" + minionsKilled +
+                ", neutralMinionsKilled=" + neutralMinionsKilled +
+                ", pentaKills=" + pentaKills +
+                ", totalDamageDealt=" + totalDamageDealt +
+                ", totalDamageDealtToChampions=" + totalDamageDealtToChampions +
+                ", totalTimeCrowdControlDealt=" + totalTimeCrowdControlDealt +
+                ", wardsKilled=" + wardsKilled +
+                ", wardsPlaced=" + wardsPlaced +
+                ", firstBloodParticipation=" + firstBloodParticipation +
+                ", firstInhibitorParticipation=" + firstInhibitorParticipation +
+                ", firstTowerParticipation=" + firstTowerParticipation +
+                ", creepsPerMinDeltas=" + creepsPerMinDeltas +
+                ", csDiffPerMinDeltas=" + csDiffPerMinDeltas +
+                ", goldPerMinDeltas=" + goldPerMinDeltas +
+                '}';
+    }*/
 }

@@ -76,4 +76,21 @@ public class Team {
 
     }
 
+    /*@Override
+    public String toString() {
+        return "Team{" +
+                "teamId=" + teamId +
+                ", dragonKills=" + dragonKills +
+                ", baronKills=" + baronKills +
+                ", inhibitorKills=" + inhibitorKills +
+                ", towerKills=" + towerKills +
+                ", bans=" + bans +
+                ", firstBaron=" + firstBaron +
+                ", firstBlood=" + firstBlood +
+                ", firstDragon=" + firstDragon +
+                ", firstInhibitor=" + firstInhibitor +
+                ", firstTower=" + firstTower +
+                ", winner=" + winner +
+                '}';
+    }*/
 }
