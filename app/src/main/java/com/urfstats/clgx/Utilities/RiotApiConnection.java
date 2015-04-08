@@ -2,10 +2,11 @@ package com.urfstats.clgx.Utilities;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RiotApiConnection {
+public class RiotApiConnection implements Serializable {
 
     private final String USER_AGENT = "Mozilla/5.0";
     private final String APIID = "4021313b-1cd7-43f1-94d4-667ee489d577";
@@ -75,7 +76,7 @@ public class RiotApiConnection {
 
 
         } catch (Exception e) {
-            System.err.println("Error getting web" + e);
+            //System.err.println("Error getting web" + e);
         }
 
     }

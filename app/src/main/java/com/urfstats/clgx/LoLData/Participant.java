@@ -99,7 +99,7 @@ public class Participant implements Serializable {
 
         } catch (JSONException e) {
 
-            System.err.println("Error: "+e);
+            System.err.println("Error "+e);
 
         }
 
@@ -111,7 +111,7 @@ public class Participant implements Serializable {
 
     }
 
-    private class ParticipantTimelineData {
+    private class ParticipantTimelineData implements Serializable {
 
         public double tenToTwenty;
         public double thirtyToEnd;

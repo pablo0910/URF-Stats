@@ -17,6 +17,7 @@ public class URFStatistics implements Serializable {
         this.games = games;
 
         statisticId.put("craziestMatch", 0);
+        craziestMatch();
 
     }
 
@@ -24,7 +25,7 @@ public class URFStatistics implements Serializable {
 
         int id = statisticId.get("craziestMatch");
 
-        if (statistics.get(id) != null) {
+        if (statistics.size() != 0) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 

@@ -1,5 +1,6 @@
 package com.urfstats.clgx.Core;
 
+import com.urfstats.clgx.Android.GamesGetter;
 import com.urfstats.clgx.LoLData.Game;
 import com.urfstats.clgx.LoLData.URFStatistics;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class DataController {
 
-    public final static String FILENAME = "urfdata.bin";
+    public final static String FILENAME = "/urfstats.bin";
     private ArrayList<Game> games;
     private URFStatistics stats;
     private String filesDir;
@@ -23,6 +24,7 @@ public class DataController {
 
         filesDir = dir;
         loadData();
+        saveData();
 
     }
 
@@ -33,7 +35,6 @@ public class DataController {
         try {
 
             oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
-            oos.writeObject(games);
             oos.writeObject(stats);
             oos.close();
 
@@ -52,8 +53,13 @@ public class DataController {
         try {
 
             ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
-            games = (ArrayList<Game>) ois.readObject();
             stats = (URFStatistics) ois.readObject();
+            ois.close();
+
+            file = new File(filesDir+ GamesGetter.FILENAME);
+            ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+            long dummy = ois.readLong();
+            games = (ArrayList<Game>) ois.readObject();
             ois.close();
 
         } catch(Exception e) {

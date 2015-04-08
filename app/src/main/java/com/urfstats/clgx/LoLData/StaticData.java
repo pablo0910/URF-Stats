@@ -6,10 +6,11 @@ import com.urfstats.clgx.Utilities.RiotApiConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class StaticData {
+public class StaticData implements Serializable {
 
     public static final HashMap<Integer, String> champs = new HashMap<>();
 

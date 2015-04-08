@@ -43,7 +43,7 @@ public class Team implements Serializable {
 
         } catch (JSONException e) {
 
-            System.err.println("Error: "+e);
+            System.err.println("Error! "+e);
 
         }
 
@@ -71,7 +71,7 @@ public class Team implements Serializable {
 
         } catch (JSONException e) {
 
-            System.err.println("Error: "+e);
+            //System.err.println("Error: No se baneo "+e);
 
         }
 
