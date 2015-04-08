@@ -1,4 +1,4 @@
-package com.urfstats.clgx.GUI;
+package com.urfstats.clgx.Android;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

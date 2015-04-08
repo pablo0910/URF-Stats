@@ -1,4 +1,4 @@
-package com.urfstats.clgx.APIConnection;
+package com.urfstats.clgx.Utilities;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,6 +18,12 @@ public class RiotApiConnection {
     public RiotApiConnection(String server, String web) {
 
         url = "https://"+server+'.'+web+USERAPI;
+
+    }
+
+    public RiotApiConnection(String server, String web, char dummy) {
+
+        url = "https://"+server+'.'+web+APIGLOBAL;
 
     }
 
