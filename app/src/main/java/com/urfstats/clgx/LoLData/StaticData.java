@@ -1,9 +1,8 @@
 package com.urfstats.clgx.LoLData;
 
 
-import com.urfstats.clgx.APIConnection.RiotApiConnection;
+import com.urfstats.clgx.Utilities.RiotApiConnection;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

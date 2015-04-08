@@ -2,15 +2,14 @@ package com.urfstats.clgx.LoLData;
 
 import android.os.AsyncTask;
 
-import com.urfstats.clgx.APIConnection.RiotApiConnection;
+import com.urfstats.clgx.Utilities.RiotApiConnection;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class URFGames {
+public class URFGames implements Serializable {
 
     ArrayList<Game> games;
 

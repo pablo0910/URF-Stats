@@ -4,9 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Game {
+public class Game implements Serializable {
 
     private final int NUMPARTICIPANTS = 10;
     private final int NUMTEAMS = 2;
@@ -77,6 +78,19 @@ public class Game {
             }
 
         }
+
+    }
+
+    public long totalKills() {
+
+        int numKills = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            numKills += participants[i].getKills();
+
+        }
+
+        return numKills;
 
     }
 
