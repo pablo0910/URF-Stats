@@ -3,9 +3,10 @@ package com.urfstats.clgx.LoLData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Participant {
+public class Participant implements Serializable {
 
     private final int NUMITEMS = 7;
 
@@ -139,6 +140,18 @@ public class Participant {
 
         }
 
+    }
+
+    public long getKills() {
+        return kills;
+    }
+
+    public long getDeaths() {
+        return deaths;
+    }
+
+    public long getAssists() {
+        return assists;
     }
 
     /*@Override
