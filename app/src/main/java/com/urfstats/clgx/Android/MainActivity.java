@@ -11,6 +11,8 @@ import com.urfstats.clgx.R;
 
 public class MainActivity extends ActionBarActivity {
 
+    public static boolean ACTIVITYALIVE = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,21 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ACTIVITYALIVE = true;
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStart();
+
+        ACTIVITYALIVE = false;
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

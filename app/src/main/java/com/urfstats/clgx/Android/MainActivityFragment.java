@@ -39,8 +39,8 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(Bundle state) {
+        super.onActivityCreated(state);
 
         MainActivityFragment.GetStaticData staticData = new GetStaticData();
         staticData.execute();
@@ -58,13 +58,13 @@ public class MainActivityFragment extends Fragment {
 
     public void startAlarm() {
         manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        int interval = 600*1000;
+        int interval = 3600*1000;
         manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
     }
 
     public void stopAlarm() {
         manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        int interval = 600*1000;
+        int interval = 3600*1000;
         manager.cancel(pendingIntent);
     }
 

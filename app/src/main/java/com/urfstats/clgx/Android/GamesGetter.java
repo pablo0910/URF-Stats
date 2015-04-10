@@ -1,6 +1,8 @@
 package com.urfstats.clgx.Android;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -8,9 +10,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 
 import com.urfstats.clgx.LoLData.Game;
 import com.urfstats.clgx.LoLData.StaticData;
+import com.urfstats.clgx.R;
 import com.urfstats.clgx.Utilities.RiotApiConnection;
 
 import org.json.JSONArray;
@@ -33,8 +38,10 @@ public class GamesGetter extends Service {
     public static final String FILENAME = "/servicedata.bin";
     private long start;
     private ArrayList<Game> games = new ArrayList<>();
-    Date date;
-    Date beginDate;
+    private Date date;
+    private Date beginDate;
+    NotificationManager mNotifyManager;
+    NotificationCompat.Builder mBuilder;
 
     Boolean amIRunningAgain;
 
@@ -48,8 +55,6 @@ public class GamesGetter extends Service {
 
     }
 
-
-
     public void saveData() {
 
         File file = new File(this.getFilesDir(), FILENAME);
@@ -57,7 +62,6 @@ public class GamesGetter extends Service {
         try {
 
             oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
-            oos.writeLong(this.start);
             oos.writeObject(games);
             oos.close();
 
@@ -78,23 +82,50 @@ public class GamesGetter extends Service {
             try {
 
                 ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
-                this.start = ois.readLong();
                 games = (ArrayList<Game>) ois.readObject();
                 ois.close();
 
             } catch (Exception e) {
 
                 System.err.println("Error! Data not loaded! " + e);
-                this.start = 1427873100000L;
                 games = new ArrayList<>();
 
             }
 
         } else {
 
-            this.start = 1427873100000L;
-
         }
+
+    }
+
+    private void notificationManager() {
+
+        mNotifyManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setContentTitle("LoL Matches Retrieve")
+                .setContentText("Download in progress...")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setOngoing(true);
+
+        // Creates an explicit intent for an Activity in your app
+        Intent resultIntent = new Intent(this, MainActivity.class);
+
+        // The stack builder object will contain an artificial back stack for the
+        // started Activity.
+        // This ensures that navigating backward from the Activity leads out of
+        // your application to the Home screen.
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        // Adds the back stack for the Intent (but not the Intent itself)
+        stackBuilder.addParentStack(MainActivity.class);
+        // Adds the Intent that starts the Activity to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
 
     }
 
@@ -102,10 +133,21 @@ public class GamesGetter extends Service {
 
         date = new Date(Calendar.getInstance().getTimeInMillis());
         loadData();
+        start = (Calendar.getInstance().getTimeInMillis() - 3600000) / 300000;
+        start = start * 300000;
         beginDate = new Date(start);
         amIRunningAgain = true;
 
+        notificationManager();
         while(beginDate.compareTo(date) <= 0) {
+
+            Long diff = (date.getTime() - beginDate.getTime()) * 100 / 3900000;
+            int tempDiff = 100 - diff.intValue();
+
+            mBuilder.setContentText("Download in progress... "+tempDiff+'%')
+                    .setProgress(100, tempDiff, false);
+            // Displays the progress bar for the first time.
+            mNotifyManager.notify(1010101, mBuilder.build());
 
             RiotApiConnection connection = new RiotApiConnection("euw.api.pvp.net/api/lol/euw/v4.1/game/ids?beginDate="+(beginDate.getTime()/1000));
             connection.sendGet();
@@ -174,6 +216,16 @@ public class GamesGetter extends Service {
             beginDate = new Date(newTime * 1000);
 
         }
+        mBuilder.setContentText("Download in progress... "+"100"+'%')
+                .setProgress(100, 100, false);
+        // Displays the progress bar for the first time.
+        mNotifyManager.notify(1010101, mBuilder.build());
+        // When the loop is finished, updates the notification
+        mBuilder.setContentText("Download complete")
+                // Removes the progress bar
+                .setProgress(0,0,false)
+                .setOngoing(false);
+        mNotifyManager.notify(1010101, mBuilder.build());
         saveData();
 
     }
@@ -218,4 +270,7 @@ public class GamesGetter extends Service {
 
         return null;
     }
+
+
+
 }
