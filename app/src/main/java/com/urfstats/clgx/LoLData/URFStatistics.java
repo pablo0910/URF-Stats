@@ -17,6 +17,7 @@ public class URFStatistics implements Serializable {
         this.games = games;
 
         statisticId.put("craziestMatch", 0);
+        statisticId.put("lessCrazyMatch", 0);
         craziestMatch();
 
     }
@@ -24,6 +25,7 @@ public class URFStatistics implements Serializable {
     public void craziestMatch() {
 
         int id = statisticId.get("craziestMatch");
+        int idL = statisticId.get("lessCrazyMatch");
 
         if (statistics.size() != 0) {
 
@@ -36,9 +38,19 @@ public class URFStatistics implements Serializable {
 
                 }
 
+                if (statistics.get(idL).game.totalKills() > game.totalKills()) {
+
+                    statistics.get(idL).game = game;
+
+                }
+
                 statistics.get(id).lastCheckedIndex = i;
+                statistics.get(idL).lastCheckedIndex = i;
 
             }
+
+            System.out.println(statistics.get(id).game);
+            System.out.println(statistics.get(idL).game);
 
         } else {
 
@@ -49,6 +61,7 @@ public class URFStatistics implements Serializable {
 
             }
             statistics.add(id, stat);
+            statistics.add(idL, stat);
 
             for (int i=1; i < games.size(); i++) {
 
@@ -59,9 +72,19 @@ public class URFStatistics implements Serializable {
 
                 }
 
+                if (statistics.get(idL).game.totalKills() > game.totalKills()) {
+
+                    statistics.get(idL).game = game;
+
+                }
+
                 statistics.get(id).lastCheckedIndex = i;
+                statistics.get(idL).lastCheckedIndex = i;
 
             }
+
+            System.out.println(statistics.get(id).game);
+            System.out.println(statistics.get(idL).game);
 
         }
 

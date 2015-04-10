@@ -94,7 +94,7 @@ public class Game implements Serializable {
 
     }
 
-    /*@Override
+    @Override
     public String toString() {
         return "Game{" +
                 "NUMPARTICIPANTS=" + NUMPARTICIPANTS +
@@ -106,5 +106,5 @@ public class Game implements Serializable {
                 ", participants=" + Arrays.toString(participants) +
                 ", teams=" + Arrays.toString(teams) +
                 '}';
-    }*/
+    }
 }

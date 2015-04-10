@@ -24,7 +24,13 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+
         <receiver android:name=".Android.ServiceThrower" />
+        <receiver
+            android:name=".Android.RefreshData"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
     </application>
 
 </manifest>

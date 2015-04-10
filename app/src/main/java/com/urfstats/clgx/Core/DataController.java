@@ -24,6 +24,7 @@ public class DataController {
 
         filesDir = dir;
         loadData();
+        stats.craziestMatch();
         saveData();
 
     }
@@ -58,7 +59,6 @@ public class DataController {
 
             file = new File(filesDir+ GamesGetter.FILENAME);
             ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
-            long dummy = ois.readLong();
             games = (ArrayList<Game>) ois.readObject();
             ois.close();
 

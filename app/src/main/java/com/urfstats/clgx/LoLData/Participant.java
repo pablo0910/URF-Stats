@@ -154,7 +154,7 @@ public class Participant implements Serializable {
         return assists;
     }
 
-    /*@Override
+    @Override
     public String toString() {
         return "Participant{" +
                 "NUMITEMS=" + NUMITEMS +
@@ -191,5 +191,5 @@ public class Participant implements Serializable {
                 ", csDiffPerMinDeltas=" + csDiffPerMinDeltas +
                 ", goldPerMinDeltas=" + goldPerMinDeltas +
                 '}';
-    }*/
+    }
 }
