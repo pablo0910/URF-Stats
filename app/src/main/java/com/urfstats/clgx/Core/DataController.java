@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class DataController {
 
-    public final static String FILENAME = "/urfstats.bin";
     private ArrayList<Game> games;
     private URFStatistics stats;
     private String filesDir;
@@ -24,32 +23,12 @@ public class DataController {
 
         filesDir = dir;
         loadData();
-        stats.craziestMatch();
-        saveData();
-
-    }
-
-    public void saveData() {
-
-        File file = new File(filesDir+FILENAME);
-        ObjectOutputStream oos;
-        try {
-
-            oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
-            oos.writeObject(stats);
-            oos.close();
-
-        } catch(Exception e) {
-
-            System.err.println("Error! Data not saved! " +e);
-
-        }
 
     }
 
     public void loadData() {
 
-        File file = new File(filesDir+FILENAME);
+        File file = new File(filesDir+GamesGetter.STATSFILENAME);
         ObjectInputStream ois;
         try {
 
@@ -57,16 +36,14 @@ public class DataController {
             stats = (URFStatistics) ois.readObject();
             ois.close();
 
-            file = new File(filesDir+ GamesGetter.FILENAME);
+            file = new File(filesDir+ GamesGetter.GAMESFILENAME);
             ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
             games = (ArrayList<Game>) ois.readObject();
             ois.close();
 
         } catch(Exception e) {
 
-            System.err.println("Error! Data not loaded! " +e);
-            games = new ArrayList<>();
-            stats = new URFStatistics(games);
+            System.err.println("No Data Retrieved Yet!");
 
         }
 

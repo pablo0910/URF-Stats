@@ -15,6 +15,7 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.urfstats.clgx.LoLData.Game;
 import com.urfstats.clgx.LoLData.StaticData;
+import com.urfstats.clgx.LoLData.URFStatistics;
 import com.urfstats.clgx.R;
 import com.urfstats.clgx.Utilities.RiotApiConnection;
 
@@ -35,13 +36,17 @@ import java.util.Date;
 
 public class GamesGetter extends Service {
 
-    public static final String FILENAME = "/servicedata.bin";
+    public static final String GAMESFILENAME = "/games.bin";
+    public static final String STATSFILENAME = "/stats.bin";
     private long start;
     private ArrayList<Game> games = new ArrayList<>();
+    private URFStatistics stats = new URFStatistics(games);
     private Date date;
     private Date beginDate;
-    NotificationManager mNotifyManager;
-    NotificationCompat.Builder mBuilder;
+    private NotificationManager mNotifyManager;
+    private NotificationCompat.Builder mBuilder;
+    private PendingIntent pendingIntent;
+    private AlarmManager manager;
 
     Boolean amIRunningAgain;
 
@@ -57,12 +62,17 @@ public class GamesGetter extends Service {
 
     public void saveData() {
 
-        File file = new File(this.getFilesDir(), FILENAME);
+        File file = new File(this.getFilesDir(), GAMESFILENAME);
         ObjectOutputStream oos;
         try {
 
             oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
             oos.writeObject(games);
+            oos.close();
+
+            file = new File(this.getFilesDir(), STATSFILENAME);
+            oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+            oos.writeObject(stats);
             oos.close();
 
         } catch(Exception e) {
@@ -75,7 +85,7 @@ public class GamesGetter extends Service {
 
     public void loadData() {
 
-        File file = new File(this.getFilesDir(), FILENAME);
+        File file = new File(this.getFilesDir(), GAMESFILENAME);
         if (file.exists()) {
 
             ObjectInputStream ois;
@@ -85,14 +95,17 @@ public class GamesGetter extends Service {
                 games = (ArrayList<Game>) ois.readObject();
                 ois.close();
 
+                file = new File(this.getFilesDir(), STATSFILENAME);
+                ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+                stats = (URFStatistics) ois.readObject();
+                ois.close();
+
             } catch (Exception e) {
 
                 System.err.println("Error! Data not loaded! " + e);
                 games = new ArrayList<>();
 
             }
-
-        } else {
 
         }
 
@@ -226,7 +239,12 @@ public class GamesGetter extends Service {
                 .setProgress(0,0,false)
                 .setOngoing(false);
         mNotifyManager.notify(1010101, mBuilder.build());
+        stats.craziestMatch();
         saveData();
+
+        Intent refeshDataIntent = new Intent(getApplicationContext(), MainActivity.class);
+        refeshDataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (MainActivity.ACTIVITYALIVE) startActivity(refeshDataIntent);
 
     }
 
