@@ -239,12 +239,6 @@ public class GamesGetter extends Service {
                 .setProgress(0,0,false)
                 .setOngoing(false);
         mNotifyManager.notify(1010101, mBuilder.build());
-        stats.allStatsCalculator();
-        saveData();
-
-        Intent refeshDataIntent = new Intent(getApplicationContext(), MainActivity.class);
-        refeshDataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (MainActivity.ACTIVITYALIVE) startActivity(refeshDataIntent);
 
     }
 
@@ -261,6 +255,14 @@ public class GamesGetter extends Service {
 
         @Override
         protected void onPostExecute(String dummy) {
+
+            stats.allStatsCalculator();
+            saveData();
+            System.out.println("WELL DONE (:");
+
+            Intent refeshDataIntent = new Intent(getApplicationContext(), MainActivity.class);
+            refeshDataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (MainActivity.ACTIVITYALIVE) startActivity(refeshDataIntent);
 
         }
 
