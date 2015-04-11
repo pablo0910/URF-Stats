@@ -77,6 +77,14 @@ public class Team implements Serializable {
 
     }
 
+    public int getBaronKills() {
+        return baronKills;
+    }
+
+    public ArrayList<Integer> getBans() {
+        return bans;
+    }
+
     /*@Override
     public String toString() {
         return "Team{" +

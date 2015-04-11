@@ -154,6 +154,32 @@ public class Participant implements Serializable {
         return assists;
     }
 
+    public long getGoldEarned() {
+        return goldEarned;
+    }
+
+    public long getTotalMinionsKilled() { return (minionsKilled+neutralMinionsKilled); }
+
+    public long getLargestCriticalStrike() {
+        return largestCriticalStrike;
+    }
+
+    public long getPentaKills() {
+        return pentaKills;
+    }
+
+    public long getTotalDamageDealtToChampions() {
+        return totalDamageDealtToChampions;
+    }
+
+    public long getTotalTimeCrowdControlDealt() {
+        return totalTimeCrowdControlDealt;
+    }
+
+    public long getWardsPlaced() {
+        return wardsPlaced;
+    }
+
     @Override
     public String toString() {
         return "Participant{" +
