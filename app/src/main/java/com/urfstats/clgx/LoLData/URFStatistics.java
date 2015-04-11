@@ -14,8 +14,8 @@ public class URFStatistics implements Serializable {
     private ArrayList<Integer> bans;
     private int lastGamesIdBansCheck = 0;
 
-    private final int CRAZIESTMATCH = 0;
-    private final int LESSCRAZYMATCH = 1;
+    private final int MOSTKILLSMATCH = 0;
+    private final int LESSKILLSMATCH = 1;
     private final int MOSTDEATHSMATCH = 2;
     private final int LESSDEATHSMATCH = 3;
     private final int MOSTGOLDEARNED = 4;
@@ -44,10 +44,27 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void craziestMatch() {
+    public void allStatsCalculator() {
 
-        int id = CRAZIESTMATCH;
-        int idL = LESSCRAZYMATCH;
+        killsMatch();
+        deathsMatch();
+        goldEarnedMatch();
+        largestCritMatch();
+        minionsKilledMatch();
+        mostPentaKillsMatch();
+        mostDamageToChampsMatch();
+        mostCrowdControlMatch();
+        wardsPlacedMatch();
+        mostBaronKillsMatch();
+        durationMatch();
+        bannedChampStat();
+
+    }
+
+    private void killsMatch() {
+
+        int id = MOSTKILLSMATCH;
+        int idL = LESSKILLSMATCH;
 
         if (statistics.size() != 0) {
 
@@ -110,7 +127,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void deathsMatch() {
+    private void deathsMatch() {
 
         int id = MOSTDEATHSMATCH;
         int idL = LESSDEATHSMATCH;
@@ -176,7 +193,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void goldEarnedMatch() {
+    private void goldEarnedMatch() {
 
         int id = MOSTGOLDEARNED;
         int idL = LESSGOLDEARNED;
@@ -242,7 +259,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void largestCritMatch() {
+    private void largestCritMatch() {
 
         int id = LARGESTCRIT;
 
@@ -290,7 +307,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void minionsKilledMatch() {
+    private void minionsKilledMatch() {
 
         int id = MOSTMINIONSKILLED;
         int idL = LESSMINIONSKILLED;
@@ -356,7 +373,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void mostPentaKillsMatch() {
+    private void mostPentaKillsMatch() {
 
         int id = MOSTPENTAKILLS;
 
@@ -404,7 +421,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void mostDamageToChampsMatch() {
+    private void mostDamageToChampsMatch() {
 
         int id = MOSTDMGTOCHAMPS;
 
@@ -452,7 +469,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void mostCrowdControlMatch() {
+    private void mostCrowdControlMatch() {
 
         int id = MOSTCC;
 
@@ -500,7 +517,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void wardsPlacedMatch() {
+    private void wardsPlacedMatch() {
 
         int id = MOSTWARDSPLACED;
         int idL = LESSWARDSPLACED;
@@ -566,7 +583,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void mostBaronKillsMatch() {
+    private void mostBaronKillsMatch() {
 
         int id = MOSTBARONKILLS;
 
@@ -614,7 +631,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void durationMatch() {
+    private void durationMatch() {
 
         int id = LONGESTMATCH;
         int idL = SHORTESTMATCH;
@@ -680,7 +697,7 @@ public class URFStatistics implements Serializable {
 
     }
 
-    public void bannedChampStat() {
+    private void bannedChampStat() {
 
         //int id = MOSTBANNEDCHAMP;
         //int idL = LESSBANNEDCHAMP;
