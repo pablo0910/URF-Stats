@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game implements Serializable {
@@ -83,7 +84,7 @@ public class Game implements Serializable {
 
     public long totalKills() {
 
-        int numKills = 0;
+        long numKills = 0;
         for (int i=0; i < this.NUMPARTICIPANTS; i++) {
 
             numKills += participants[i].getKills();
@@ -93,6 +94,143 @@ public class Game implements Serializable {
         return numKills;
 
     }
+
+    public long totalDeaths() {
+
+        long numDeaths = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            numDeaths += participants[i].getDeaths();
+
+        }
+
+        return numDeaths;
+
+    }
+
+    public long goldEarned() {
+
+        long goldEarned = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            goldEarned += participants[i].getGoldEarned();
+
+        }
+
+        return goldEarned;
+
+    }
+
+    public long largestCriticalStrike() {
+
+        long largestCrit = participants[0].getLargestCriticalStrike();
+        for (int i=1; i < this.NUMPARTICIPANTS; i++) {
+
+            if (((Long) largestCrit).compareTo((Long) participants[i].getLargestCriticalStrike()) < 0) {
+
+                largestCrit = participants[i].getLargestCriticalStrike();
+
+            }
+
+        }
+
+        return largestCrit;
+
+    }
+
+    public long minionsKilled() {
+
+        long minionsKilled = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            minionsKilled += participants[i].getTotalMinionsKilled();
+
+        }
+
+        return minionsKilled;
+
+    }
+
+    public long totalPentaKills() {
+
+        long pentaKills = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            pentaKills += participants[i].getPentaKills();
+
+        }
+
+        return pentaKills;
+
+    }
+
+    public long totalDamageToChamps() {
+
+        long totalDmg = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            totalDmg += participants[i].getTotalDamageDealtToChampions();
+
+        }
+
+        return totalDmg;
+
+    }
+
+    public long totalCrowdControl() {
+
+        long totalCC = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            totalCC += participants[i].getTotalTimeCrowdControlDealt();
+
+        }
+
+        return totalCC;
+
+    }
+
+    public long totalWardsPlaced() {
+
+        long totalWards = 0;
+        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+
+            totalWards += participants[i].getWardsPlaced();
+
+        }
+
+        return totalWards;
+
+    }
+
+    public long totalBaronKills() {
+
+        long baronKills = 0;
+        for (int i=0; i < this.NUMTEAMS; i++) {
+
+            baronKills += teams[i].getBaronKills();
+
+        }
+
+        return baronKills;
+
+    }
+
+    public ArrayList<Integer> getGameBans() {
+
+        ArrayList<Integer> bans = new ArrayList<>();
+
+        for (int i=0; i < this.NUMTEAMS; i++) {
+
+            bans.addAll(teams[i].getBans());
+
+        }
+
+        return bans;
+
+    }
+
+    public long getMatchDuration() { return this.matchDuration; }
 
     @Override
     public String toString() {
