@@ -21,19 +21,20 @@ public class URFStatistics implements Serializable {
     private final int MOSTGOLDEARNED = 4;
     private final int LESSGOLDEARNED = 5;
     private final int LARGESTCRIT = 6;
-    private final int MOSTMINIONSKILLED = 8;
-    private final int LESSMINIONSKILLED = 9;
-    private final int MOSTPENTAKILLS = 10;
-    private final int MOSTDMGTOCHAMPS = 12;
-    private final int LESSDMGTOCHAMPS = 13;
-    private final int MOSTCC = 14;
-    private final int MOSTWARDSPLACED = 16;
-    private final int LESSWARDSPLACED = 17;
-    private final int MOSTBARONKILLS = 18;
-    private final int LONGESTMATCH = 20;
-    private final int SHORTESTMATCH = 21;
-    private final int MOSTBANNEDCHAMP = 22;
-    private final int LESSBANNEDCHAMP = 23;
+    private final int MOSTMINIONSKILLED = 7;
+    private final int LESSMINIONSKILLED = 8;
+    private final int MOSTPENTAKILLS = 9;
+    private final int MOSTDMGTOCHAMPS = 10;
+    private final int MOSTCC = 11;
+    private final int MOSTWARDSPLACED = 12;
+    private final int LESSWARDSPLACED = 13;
+    private final int MOSTBARONKILLS = 14;
+    private final int LONGESTMATCH = 15;
+    private final int SHORTESTMATCH = 16;
+    private final int MOSTBANNEDCHAMP = 17;
+    private final int LESSBANNEDCHAMP = 18;
+
+    private final int TOTALSTATS = 17;
 
     public URFStatistics(ArrayList<Game> games) {
 
@@ -66,7 +67,7 @@ public class URFStatistics implements Serializable {
         int id = MOSTKILLSMATCH;
         int idL = LESSKILLSMATCH;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -132,7 +133,7 @@ public class URFStatistics implements Serializable {
         int id = MOSTDEATHSMATCH;
         int idL = LESSDEATHSMATCH;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -198,7 +199,7 @@ public class URFStatistics implements Serializable {
         int id = MOSTGOLDEARNED;
         int idL = LESSGOLDEARNED;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -263,7 +264,7 @@ public class URFStatistics implements Serializable {
 
         int id = LARGESTCRIT;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -312,7 +313,7 @@ public class URFStatistics implements Serializable {
         int id = MOSTMINIONSKILLED;
         int idL = LESSMINIONSKILLED;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -377,7 +378,7 @@ public class URFStatistics implements Serializable {
 
         int id = MOSTPENTAKILLS;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -425,7 +426,7 @@ public class URFStatistics implements Serializable {
 
         int id = MOSTDMGTOCHAMPS;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -473,7 +474,7 @@ public class URFStatistics implements Serializable {
 
         int id = MOSTCC;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -522,7 +523,7 @@ public class URFStatistics implements Serializable {
         int id = MOSTWARDSPLACED;
         int idL = LESSWARDSPLACED;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -587,7 +588,7 @@ public class URFStatistics implements Serializable {
 
         int id = MOSTBARONKILLS;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
@@ -636,7 +637,7 @@ public class URFStatistics implements Serializable {
         int id = LONGESTMATCH;
         int idL = SHORTESTMATCH;
 
-        if (statistics.size() != 0) {
+        if (statistics.size() == TOTALSTATS) {
 
             for (int i=statistics.get(id).lastCheckedIndex; i < games.size(); i++) {
 
