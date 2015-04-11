@@ -239,7 +239,7 @@ public class GamesGetter extends Service {
                 .setProgress(0,0,false)
                 .setOngoing(false);
         mNotifyManager.notify(1010101, mBuilder.build());
-        stats.craziestMatch();
+        stats.allStatsCalculator();
         saveData();
 
         Intent refeshDataIntent = new Intent(getApplicationContext(), MainActivity.class);
