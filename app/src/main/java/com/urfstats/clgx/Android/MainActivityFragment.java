@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +17,14 @@ import com.urfstats.clgx.LoLData.StaticData;
 import com.urfstats.clgx.LoLData.URFGames;
 import com.urfstats.clgx.R;
 
-public class MainActivityFragment extends Fragment {
+import java.util.Date;
+
+public class MainActivityFragment extends Fragment implements DatePickerFragment.DateGetter {
 
     private PendingIntent pendingIntent;
     private AlarmManager manager;
+    private Date beginDate;
+    private Date endDate;
 
     public MainActivityFragment() {
         // Required empty public constructor
@@ -42,7 +47,12 @@ public class MainActivityFragment extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        MainActivityFragment.GetStaticData staticData = new GetStaticData();
+        TimePickerFragment timePicker = new TimePickerFragment();
+        DatePickerFragment datePicker = new DatePickerFragment();
+        timePicker.setDatePicker(datePicker, this);
+        timePicker.show(getActivity().getSupportFragmentManager(), "timePicker");
+
+        /*MainActivityFragment.GetStaticData staticData = new GetStaticData();
         staticData.execute();
 
         //URFGames games = new URFGames();
@@ -52,7 +62,7 @@ public class MainActivityFragment extends Fragment {
         stopAlarm();
         startAlarm();
 
-        DataController data = new DataController(getActivity().getFilesDir().toString());
+        DataController data = new DataController(getActivity().getFilesDir().toString());*/
 
     }
 
@@ -66,6 +76,14 @@ public class MainActivityFragment extends Fragment {
         manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         int interval = 3600*1000;
         manager.cancel(pendingIntent);
+    }
+
+    @Override
+    public void setDate(Date date) {
+
+        this.beginDate = date;
+        System.out.println(date);
+
     }
 
     private class GetStaticData extends AsyncTask<String, Void, String> {

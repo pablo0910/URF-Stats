@@ -12,6 +12,7 @@ import com.urfstats.clgx.R;
 public class MainActivity extends ActionBarActivity {
 
     public static boolean ACTIVITYALIVE = false;
+    public MainActivityFragment fragment = new MainActivityFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(actionBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerMainActivity, new MainActivityFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerMainActivity, fragment).commit();
 
     }
 
