@@ -35,6 +35,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.urfstats.clgx.Android.MainActivity" />
         </activity>
+        <activity
+            android:name=".Android.MatchPresenterActivity"
+            android:label="@string/title_activity_match_presenter"
+            android:parentActivityName=".Android.StatsListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.urfstats.clgx.Android.StatsListActivity" />
+        </activity>
     </application>
 
 </manifest>
