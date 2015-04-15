@@ -20,12 +20,12 @@ public class StatsListActivity extends ActionBarActivity {
         setContentView(R.layout.statslist_activity);
         Bundle dateContainer = getIntent().getExtras();
 
-        final Toolbar actionBar = (Toolbar) findViewById(R.id.actionBar);
+        final Toolbar actionBar = (Toolbar) findViewById(R.id.actionBarUpButton);
         setSupportActionBar(actionBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragment = StatsListActivityFragment.newInstance((Date) dateContainer.getSerializable("date1"), (Date) dateContainer.getSerializable("date2"));
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerMainActivity, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerStatsListActivity, fragment).commit();
 
     }
 
