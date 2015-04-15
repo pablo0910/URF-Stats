@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appDescription">URF Stats is an APP which calculates some stats.\nIt uses some URF Game Mode matches in order to do it.\nClick the button which is below in order to set the games dates interval.</string>
+    <string name="datesAdvice">*Games info retrieving will take a while.\nA very big interval of time between the dates is not recommended. It could take so much time.</string>
+    <string name="title_activity_stats_list">Stats List</string>
 </resources>

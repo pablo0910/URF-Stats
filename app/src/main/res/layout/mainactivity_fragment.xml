@@ -8,12 +8,56 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="URF Stats"
+        android:text="Date Pick"
         android:textSize="25sp"
         android:textColor="@color/material_light_blue_A700"
         android:id="@+id/mainfragmentcontainer"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp" />
+
+    <View
+        android:layout_below="@+id/mainfragmentcontainer"
+        android:layout_marginTop="15dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/appDescription"
+        android:id="@+id/appExplanation"
+        android:layout_below="@+id/mainfragmentcontainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Dates"
+        android:id="@+id/datePickerButton"
+        android:layout_below="@+id/appExplanation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/datesAdvice"
+        android:textSize="12sp"
+        android:textColor="@color/red_800"
+        android:id="@+id/appAdvice"
+        android:layout_below="@+id/datePickerButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"/>
 
 </RelativeLayout>

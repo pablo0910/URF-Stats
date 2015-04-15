@@ -2,6 +2,7 @@ package com.urfstats.clgx.Android;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
@@ -58,7 +59,12 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         } else {
 
             this.date2 = date;
-            System.out.println(date1+"|"+date2);
+            Intent newActivity = new Intent(getActivity(), StatsListActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("date1", this.date1);
+            bundle.putSerializable("date2", this.date2);
+            newActivity.putExtras(bundle);
+            getActivity().startActivity(newActivity);
 
         }
 

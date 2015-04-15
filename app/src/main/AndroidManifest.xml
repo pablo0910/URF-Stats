@@ -26,6 +26,15 @@
         </service>
 
         <receiver android:name=".Android.ServiceThrower" />
+
+        <activity
+            android:name=".Android.StatsListActivity"
+            android:label="@string/title_activity_stats_list"
+            android:parentActivityName=".Android.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.urfstats.clgx.Android.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
