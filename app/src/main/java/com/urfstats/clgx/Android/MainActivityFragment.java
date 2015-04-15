@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.urfstats.clgx.Core.DataController;
 import com.urfstats.clgx.LoLData.StaticData;
@@ -20,11 +21,6 @@ import com.urfstats.clgx.R;
 import java.util.Date;
 
 public class MainActivityFragment extends Fragment {
-
-    private PendingIntent pendingIntent;
-    private AlarmManager manager;
-    private Date beginDate;
-    private Date endDate;
 
     public MainActivityFragment() {
         // Required empty public constructor
@@ -47,53 +43,19 @@ public class MainActivityFragment extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        TimePickerFragment timePicker = new TimePickerFragment();
-        DatePickerFragment datePicker = new DatePickerFragment();
-        timePicker.setDatePicker(datePicker);
-        timePicker.show(getActivity().getSupportFragmentManager(), "timePicker");
+        Button dateButton = (Button) getActivity().findViewById(R.id.datePickerButton);
 
-        /*MainActivityFragment.GetStaticData staticData = new GetStaticData();
-        staticData.execute();
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        //URFGames games = new URFGames();
+                TimePickerFragment timePicker = new TimePickerFragment();
+                DatePickerFragment datePicker = new DatePickerFragment();
+                timePicker.setDatePicker(datePicker);
+                timePicker.show(getActivity().getSupportFragmentManager(), "timePicker");
 
-        Intent alarmIntent = new Intent(getActivity(), ServiceThrower.class);
-        pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, 0);
-        stopAlarm();
-        startAlarm();
-
-        DataController data = new DataController(getActivity().getFilesDir().toString());*/
-
-    }
-
-    public void startAlarm() {
-        manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        int interval = 3600*1000;
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-    }
-
-    public void stopAlarm() {
-        manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        int interval = 3600*1000;
-        manager.cancel(pendingIntent);
-    }
-
-    private class GetStaticData extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... id) {
-
-            StaticData data = new StaticData();
-            data.getChamps();
-
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String dummy) {
-
-        }
+            }
+        });
 
     }
 
