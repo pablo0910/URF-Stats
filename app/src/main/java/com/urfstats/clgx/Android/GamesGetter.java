@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
@@ -54,6 +55,9 @@ public class GamesGetter extends Service {
 
     public int onStartCommand(final Intent intent1, int flags, int startId) {
 
+        Bundle dateContainer = intent1.getExtras();
+        beginDate = (Date) dateContainer.getSerializable("date1");
+        date = (Date) dateContainer.getSerializable("date2");
         GamesGetter.GetMatchesInfo matchesInfo = new GetMatchesInfo();
         matchesInfo.execute();
         return START_REDELIVER_INTENT;
@@ -142,19 +146,29 @@ public class GamesGetter extends Service {
 
     }
 
+    private Date getProperDate(Date old) { //Calculates a proper data for API
+
+        Date newDate;
+        long start = (old.getTime() - 3600000) / 300000;
+        start = start * 300000;
+        newDate = new Date(start);
+
+        return newDate;
+
+    }
+
     private void getMatches() {
 
-        date = new Date(Calendar.getInstance().getTimeInMillis());
         loadData();
-        start = (Calendar.getInstance().getTimeInMillis() - 3600000) / 300000;
-        start = start * 300000;
-        beginDate = new Date(start);
+        beginDate = getProperDate(beginDate);
         amIRunningAgain = true;
+        System.out.println(beginDate + "|" + date);
+        long difference = date.getTime() - beginDate.getTime() + 300000;
 
         notificationManager();
         while(beginDate.compareTo(date) <= 0) {
 
-            Long diff = (date.getTime() - beginDate.getTime()) * 100 / 3900000;
+            Long diff = (date.getTime() - beginDate.getTime()) * 100 / difference;
             int tempDiff = 100 - diff.intValue();
 
             mBuilder.setContentText("Download in progress... "+tempDiff+'%')
@@ -260,9 +274,14 @@ public class GamesGetter extends Service {
             saveData();
             System.out.println("WELL DONE (:");
 
-            Intent refeshDataIntent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent refeshDataIntent = new Intent(getApplicationContext(), StatsListActivity.class);
             refeshDataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (MainActivity.ACTIVITYALIVE) startActivity(refeshDataIntent);
+            if (StatsListActivity.ACTIVITYALIVE) {
+
+                startActivity(refeshDataIntent);
+                StatsListActivity.DATAREADY = true;
+
+            }
 
         }
 

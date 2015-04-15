@@ -9,7 +9,9 @@ public class ServiceThrower extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        context.startService(new Intent(context, GamesGetter.class));
+        Intent newService = new Intent(context, GamesGetter.class);
+        newService.putExtras(intent.getExtras());
+        context.startService(newService);
         System.out.println("Initializating...");
 
     }

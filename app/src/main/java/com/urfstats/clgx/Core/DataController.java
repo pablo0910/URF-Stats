@@ -18,6 +18,7 @@ public class DataController {
     private ArrayList<Game> games;
     private URFStatistics stats;
     private String filesDir;
+    public boolean dataToShow = false;
 
     public DataController(String dir) {
 
@@ -40,6 +41,7 @@ public class DataController {
             ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
             games = (ArrayList<Game>) ois.readObject();
             ois.close();
+            dataToShow = true;
 
         } catch(Exception e) {
 

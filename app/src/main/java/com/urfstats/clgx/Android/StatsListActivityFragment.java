@@ -13,10 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.urfstats.clgx.Core.DataController;
 import com.urfstats.clgx.LoLData.StaticData;
 import com.urfstats.clgx.R;
+
+import org.w3c.dom.Text;
 
 import java.util.Date;
 
@@ -44,7 +48,10 @@ public class StatsListActivityFragment extends Fragment {
     }
 
     public StatsListActivityFragment() {
-        // Required empty public constructor
+
+        date1 = null;
+        date2 = null;
+
     }
 
     @Override
@@ -67,15 +74,33 @@ public class StatsListActivityFragment extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        /*StatsListActivityFragment.GetStaticData staticData = new GetStaticData();
+        ProgressBar bar = (ProgressBar) getActivity().findViewById(R.id.retrievingDataProgressBar);
+        TextView textView = (TextView) getActivity().findViewById(R.id.retrievingDataTextView);
+
+        StatsListActivityFragment.GetStaticData staticData = new GetStaticData();
         staticData.execute();
 
-        //URFGames games = new URFGames();
+        if (date1!=null && date2!=null) {
 
-        Intent alarmIntent = new Intent(getActivity(), ServiceThrower.class);
-        pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, 0);
-        stopAlarm();
-        startAlarm();*/
+            Intent alarmIntent = new Intent(getActivity(), ServiceThrower.class);
+            Bundle dateContainer = new Bundle();
+            if (date1.compareTo(date2) <= 0) {
+
+                dateContainer.putSerializable("date1", date1);
+                dateContainer.putSerializable("date2", date2);
+
+            } else {
+
+                dateContainer.putSerializable("date1", date2);
+                dateContainer.putSerializable("date2", date1);
+
+            }
+            alarmIntent.putExtras(dateContainer);
+            pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, 0);
+            stopAlarm();
+            startAlarm();
+
+        }
 
         DataController data = new DataController(getActivity().getFilesDir().toString());
         String[] statsTitle =  { "Craziest Match", "Less Crazy Match", "Most Deaths", "Less Deaths", "Richest Match", "Poorest Match",
@@ -104,6 +129,20 @@ public class StatsListActivityFragment extends Fragment {
 
             }
         });
+
+        if (!StatsListActivity.DATAREADY) {
+
+            mRecyclerView.setVisibility(RecyclerView.INVISIBLE);
+            bar.setVisibility(ProgressBar.VISIBLE);
+            textView.setVisibility(TextView.VISIBLE);
+
+        } else {
+
+            mRecyclerView.setVisibility(RecyclerView.VISIBLE);
+            bar.setVisibility(ProgressBar.INVISIBLE);
+            textView.setVisibility(TextView.INVISIBLE);
+
+        }
 
     }
 
