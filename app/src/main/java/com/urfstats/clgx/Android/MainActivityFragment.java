@@ -19,7 +19,7 @@ import com.urfstats.clgx.R;
 
 import java.util.Date;
 
-public class MainActivityFragment extends Fragment implements DatePickerFragment.DateGetter {
+public class MainActivityFragment extends Fragment {
 
     private PendingIntent pendingIntent;
     private AlarmManager manager;
@@ -49,7 +49,7 @@ public class MainActivityFragment extends Fragment implements DatePickerFragment
 
         TimePickerFragment timePicker = new TimePickerFragment();
         DatePickerFragment datePicker = new DatePickerFragment();
-        timePicker.setDatePicker(datePicker, this);
+        timePicker.setDatePicker(datePicker);
         timePicker.show(getActivity().getSupportFragmentManager(), "timePicker");
 
         /*MainActivityFragment.GetStaticData staticData = new GetStaticData();
@@ -76,14 +76,6 @@ public class MainActivityFragment extends Fragment implements DatePickerFragment
         manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         int interval = 3600*1000;
         manager.cancel(pendingIntent);
-    }
-
-    @Override
-    public void setDate(Date date) {
-
-        this.beginDate = date;
-        System.out.println(date);
-
     }
 
     private class GetStaticData extends AsyncTask<String, Void, String> {

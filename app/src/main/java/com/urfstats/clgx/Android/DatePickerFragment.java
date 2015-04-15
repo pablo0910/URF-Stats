@@ -13,6 +13,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     private int hour;
     private int minute;
+    private Date date1, date2 = null;
 
     public void setTimeOfDay(int hourOfDay, int minute) {
 
@@ -40,13 +41,32 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
         Date date = new Date(temp.getTimeInMillis());
 
-        System.out.println(date);
+        /*
+        *
+        * Algorithm which creates a bucle in order to ask for 2 dates
+        *
+         */
+
+        if (this.date1==null) {
+
+            DatePickerFragment datePicker = new DatePickerFragment();
+            datePicker.setDate(date);
+            TimePickerFragment timePicker = new TimePickerFragment();
+            timePicker.setDatePicker(datePicker);
+            timePicker.show(getActivity().getSupportFragmentManager(), "timePicker");
+
+        } else {
+
+            this.date2 = date;
+            System.out.println(date1+"|"+date2);
+
+        }
 
     }
 
-    interface DateGetter {
+    public void setDate(Date date) {
 
-        void setDate(Date date);
+        this.date1 = date;
 
     }
 

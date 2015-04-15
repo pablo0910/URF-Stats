@@ -8,6 +8,7 @@ import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
@@ -35,7 +36,8 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-        DialogFragment newFragment = datePicker;
+        DatePickerFragment newFragment = datePicker;
+        datePicker.setTimeOfDay(hourOfDay, minute);
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
 
     }
