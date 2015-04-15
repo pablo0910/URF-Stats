@@ -28,7 +28,7 @@ public class StatsListActivityFragment extends Fragment {
     private AlarmManager manager;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Date date1;
@@ -78,15 +78,32 @@ public class StatsListActivityFragment extends Fragment {
         startAlarm();*/
 
         DataController data = new DataController(getActivity().getFilesDir().toString());
-        String[] statsTitle =  { "Pablo" };
-        String[] statsDescription = { "Jorge" };
+        String[] statsTitle =  { "Craziest Match", "Less Crazy Match", "Most Deaths", "Less Deaths", "Richest Match", "Poorest Match",
+                "Too Strong AutoAttack", "Best Farming Match", "Worst Farming Match", "Most PENTAKILLS", "Too much DMG", "That CC", "Most Vision",
+                "No Vision", "Most Baron Kills", "Longest Match", "Shortest Match", "OP Champ", "Worst Champ" };
+        String[] statsDescription = { "Shows the match with the majority of the kills", "Shows the match with less kills", "Shows the match with most deaths",
+                "Shows the match with less deaths", "Shows the match with most gold earned", "Shows the match with less money earned", "Shows the match with the largest critical strike",
+                "Shows the match with most minions killed", "Shows the match with less minions killed", "Shows the match with most PENTAKILLS",
+                "Shows the match with most damage dealt to champs", "Shows the match where champs were most time under CrowdControl",
+                "Shows the match with most wards placed", "Shows the match with less wards placed", "Shows the match with most Baron Nashor kills",
+                "Shows the longest match", "Shows the shortest match", "Shows the most banned Champ", "Shows the less banned Champ" };
 
         mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.statsList);
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(getActivity(), null));
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerViewAdapter(statsTitle, statsDescription);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+
+                System.out.println("Mi id: "+position);
+
+            }
+        });
 
     }
 
