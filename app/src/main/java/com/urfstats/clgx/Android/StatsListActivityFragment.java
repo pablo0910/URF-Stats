@@ -22,14 +22,13 @@ import com.urfstats.clgx.R;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.util.Date;
 
 public class StatsListActivityFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "date1";
     private static final String ARG_PARAM2 = "date2";
-    private PendingIntent pendingIntent;
-    private AlarmManager manager;
 
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
@@ -82,7 +81,7 @@ public class StatsListActivityFragment extends Fragment {
 
         if (date1!=null && date2!=null) {
 
-            Intent alarmIntent = new Intent(getActivity(), ServiceThrower.class);
+            Intent alarmIntent = new Intent(getActivity(), GamesGetter.class);
             Bundle dateContainer = new Bundle();
             if (date1.compareTo(date2) <= 0) {
 
@@ -96,17 +95,15 @@ public class StatsListActivityFragment extends Fragment {
 
             }
             alarmIntent.putExtras(dateContainer);
-            pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, 0);
-            stopAlarm();
-            startAlarm();
+            getActivity().startService(alarmIntent);
 
         }
 
-        DataController data = new DataController(getActivity().getFilesDir().toString());
-        String[] statsTitle =  { "Craziest Match", "Less Crazy Match", "Most Deaths", "Less Deaths", "Richest Match", "Poorest Match",
+        final DataController data = new DataController(getActivity().getFilesDir().toString());
+        final String[] statsTitle =  { "Craziest Match", "Less Crazy Match", "Most Deaths", "Less Deaths", "Richest Match", "Poorest Match",
                 "Too Strong AutoAttack", "Best Farming Match", "Worst Farming Match", "Most PENTAKILLS", "Too much DMG", "That CC", "Most Vision",
                 "No Vision", "Most Baron Kills", "Longest Match", "Shortest Match", "OP Champ", "Worst Champ" };
-        String[] statsDescription = { "Shows the match with the majority of the kills", "Shows the match with less kills", "Shows the match with most deaths",
+        final String[] statsDescription = { "Shows the match with the majority of the kills", "Shows the match with less kills", "Shows the match with most deaths",
                 "Shows the match with less deaths", "Shows the match with most gold earned", "Shows the match with less money earned", "Shows the match with the largest critical strike",
                 "Shows the match with most minions killed", "Shows the match with less minions killed", "Shows the match with most PENTAKILLS",
                 "Shows the match with most damage dealt to champs", "Shows the match where champs were most time under CrowdControl",
@@ -125,12 +122,17 @@ public class StatsListActivityFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
 
-                System.out.println("Mi id: "+position);
+                Intent gameShower = new Intent(getActivity(), MatchPresenterActivity.class);
+                Bundle game = new Bundle();
+                game.putString("statTitle", statsTitle[position]);
+                game.putSerializable("match", data.getStats().getStatistics().get(position).game);
+                gameShower.putExtras(game);
+                getActivity().startActivity(gameShower);
 
             }
         });
 
-        if (!StatsListActivity.DATAREADY) {
+        if (!StatsListActivity.DATAREADY && !new File(getActivity().getFilesDir(),GamesGetter.STATSFILENAME).exists()) {
 
             mRecyclerView.setVisibility(RecyclerView.INVISIBLE);
             bar.setVisibility(ProgressBar.VISIBLE);
@@ -144,18 +146,6 @@ public class StatsListActivityFragment extends Fragment {
 
         }
 
-    }
-
-    public void startAlarm() {
-        manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        int interval = 3600*1000;
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-    }
-
-    public void stopAlarm() {
-        manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        int interval = 3600*1000;
-        manager.cancel(pendingIntent);
     }
 
     private class GetStaticData extends AsyncTask<String, Void, String> {

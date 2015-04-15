@@ -64,6 +64,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
             bundle.putSerializable("date1", this.date1);
             bundle.putSerializable("date2", this.date2);
             newActivity.putExtras(bundle);
+            System.out.println(date1+"||"+date2);
             getActivity().startActivity(newActivity);
 
         }

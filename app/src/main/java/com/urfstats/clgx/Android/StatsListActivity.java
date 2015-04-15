@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.urfstats.clgx.R;
 
+import java.io.File;
 import java.util.Date;
 
 public class StatsListActivity extends ActionBarActivity {
@@ -43,6 +44,7 @@ public class StatsListActivity extends ActionBarActivity {
         super.onStart();
 
         ACTIVITYALIVE = false;
+        DATAREADY = false;
 
     }
 }

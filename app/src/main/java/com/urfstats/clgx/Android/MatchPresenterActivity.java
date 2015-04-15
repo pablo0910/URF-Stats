@@ -21,12 +21,13 @@ public class MatchPresenterActivity extends ActionBarActivity {
         setContentView(R.layout.matchpresenter_activity);
         Bundle dateContainer = getIntent().getExtras();
 
-        final Toolbar actionBar = (Toolbar) findViewById(R.id.actionBarUpButton);
+        final Toolbar actionBar = (Toolbar) findViewById(R.id.matchPresenterToolbar);
         setSupportActionBar(actionBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(dateContainer.getString("statTitle"));
 
-        fragment = MatchPresenterFragment.newInstance((Game) dateContainer.getSerializable("game"));
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerStatsListActivity, fragment).commit();
+        fragment = MatchPresenterFragment.newInstance((Game) dateContainer.getSerializable("match"));
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerMatchPresenterActivity, fragment).commit();
 
     }
 

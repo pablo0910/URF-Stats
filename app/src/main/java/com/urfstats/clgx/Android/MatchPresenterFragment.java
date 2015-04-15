@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.urfstats.clgx.LoLData.Game;
 import com.urfstats.clgx.R;
@@ -40,6 +41,15 @@ public class MatchPresenterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.matchpresenter_fragment, container, false);
+    }
+
+    @Override
+     public void onActivityCreated(Bundle state) {
+        super.onActivityCreated(state);
+
+        TextView tv = (TextView) getActivity().findViewById(R.id.matchContainer);
+        tv.setText(match.toString());
+
     }
 
 }

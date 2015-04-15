@@ -13,6 +13,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.Toast;
 
 import com.urfstats.clgx.LoLData.Game;
 import com.urfstats.clgx.LoLData.StaticData;
@@ -49,18 +50,17 @@ public class GamesGetter extends Service {
     private PendingIntent pendingIntent;
     private AlarmManager manager;
 
-    Boolean amIRunningAgain;
+    public void onCreate() { }
 
-    public void onCreate() { amIRunningAgain = false; }
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
-    public int onStartCommand(final Intent intent1, int flags, int startId) {
-
-        Bundle dateContainer = intent1.getExtras();
+        Bundle dateContainer = intent.getExtras();
         beginDate = (Date) dateContainer.getSerializable("date1");
         date = (Date) dateContainer.getSerializable("date2");
         GamesGetter.GetMatchesInfo matchesInfo = new GetMatchesInfo();
         matchesInfo.execute();
-        return START_REDELIVER_INTENT;
+        stopSelf();
+        return START_NOT_STICKY;
 
     }
 
@@ -126,7 +126,7 @@ public class GamesGetter extends Service {
                 .setOngoing(true);
 
         // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(this, MainActivity.class);
+        Intent resultIntent = new Intent(this, StatsListActivity.class);
 
         // The stack builder object will contain an artificial back stack for the
         // started Activity.
@@ -149,7 +149,7 @@ public class GamesGetter extends Service {
     private Date getProperDate(Date old) { //Calculates a proper data for API
 
         Date newDate;
-        long start = (old.getTime() - 3600000) / 300000;
+        long start = old.getTime() / 300000;
         start = start * 300000;
         newDate = new Date(start);
 
@@ -161,8 +161,6 @@ public class GamesGetter extends Service {
 
         loadData();
         beginDate = getProperDate(beginDate);
-        amIRunningAgain = true;
-        System.out.println(beginDate + "|" + date);
         long difference = date.getTime() - beginDate.getTime() + 300000;
 
         notificationManager();
@@ -244,14 +242,14 @@ public class GamesGetter extends Service {
 
         }
         mBuilder.setContentText("Download in progress... "+"100"+'%')
+                .setOngoing(false)
                 .setProgress(100, 100, false);
         // Displays the progress bar for the first time.
         mNotifyManager.notify(1010101, mBuilder.build());
         // When the loop is finished, updates the notification
         mBuilder.setContentText("Download complete")
                 // Removes the progress bar
-                .setProgress(0,0,false)
-                .setOngoing(false);
+                .setProgress(0, 0, false);
         mNotifyManager.notify(1010101, mBuilder.build());
 
     }
@@ -272,7 +270,8 @@ public class GamesGetter extends Service {
 
             stats.allStatsCalculator();
             saveData();
-            System.out.println("WELL DONE (:");
+            Toast.makeText(getApplicationContext(), "New Data Added!. Stats Updated!",
+                    Toast.LENGTH_LONG).show();
 
             Intent refeshDataIntent = new Intent(getApplicationContext(), StatsListActivity.class);
             refeshDataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

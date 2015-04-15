@@ -51,4 +51,7 @@ public class DataController {
 
     }
 
+    public URFStatistics getStats() {
+        return stats;
+    }
 }

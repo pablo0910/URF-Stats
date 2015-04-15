@@ -739,4 +739,15 @@ public class URFStatistics implements Serializable {
 
     }
 
+    public ArrayList<Statistic> getStatistics() {
+        return statistics;
+    }
+
+    public int getMostBannedChamp() {
+        return mostBannedChamp;
+    }
+
+    public int getLessBannedChamp() {
+        return lessBannedChamp;
+    }
 }
