@@ -6,6 +6,8 @@ First of all you must put 2 dates. Stats will be calculated with games between t
 
 When data has already been retrieved from Riot Api, you'll be able to see the stats.
 
+Due to Riot Api Developer API Key, this APP doesn't retrieve ALL matches in the period of time. It retrieves as many as API allows. Source code has a solution for this usue, which is sleep until it can retrieve new games again but this will take a lot of time and that's why it isn't included in the Release Candidate Version.
+
 This APP uses new Android Lollipop widgets such as RecycleView.
 
 Enjoy it ;)
