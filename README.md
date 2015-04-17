@@ -11,3 +11,5 @@ This APP uses new Android Lollipop widgets such as RecycleView.
 Enjoy it ;)
 
 APP done in 2015 to the Riot Games Api Challenge.
+
+Done by pablo0910, Castilla y Leon, Spain - Nick: cOLeGaX - Server: EUW
