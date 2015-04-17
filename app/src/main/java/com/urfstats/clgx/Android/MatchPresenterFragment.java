@@ -1,12 +1,15 @@
 package com.urfstats.clgx.Android;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -69,15 +72,33 @@ public class MatchPresenterFragment extends Fragment {
     @SuppressLint("ResourceAsColor")
     private void showGUI() {
 
-        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.participantsContainer);
+        LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.participantsContainer);
         TextView stat = (TextView) getActivity().findViewById(R.id.statTitleMatchPresenter);
         stat.setText(statTitle+": "+match.getStat(position));
+
+        TextView gameId = (TextView) getActivity().findViewById(R.id.gameIdTextView);
+        TextView gameDuration = (TextView) getActivity().findViewById(R.id.gameDurationTextView);
+        TextView teamWinner = (TextView) getActivity().findViewById(R.id.teamWinner);
+
+        gameId.setText("Game: "+match.getGameId());
+        gameDuration.setText("Game Duration: "+match.getMatchDuration()/60+"min "+match.getMatchDuration()%60+"sec");
+        if (match.getTeams()[0].isWinner()){
+
+            teamWinner.setText("Winner: Blue Team");
+            teamWinner.setTextColor(Color.parseColor("#7785EF"));
+
+        } else {
+
+            teamWinner.setText("Winner: Red Team");
+            teamWinner.setTextColor(Color.parseColor("#CB7777"));
+
+        }
 
         for (int i=0; i < Game.NUMPARTICIPANTS; i++) {
 
             Participant participant = match.getParticipants()[i];
 
-            View newParticipant = getActivity().getLayoutInflater().inflate(R.layout.participant_info, scrollView);
+            View newParticipant = getActivity().getLayoutInflater().inflate(R.layout.participant_info, null);
             TextView championPlayed, killDeathAssist, pentaKills, champLevel, goldEarned, largestCrit, totalMinionsKilled
                     , damageDealtToChamps, crowdControlDone, wardsPlaced;
             RelativeLayout relativeLayout = (RelativeLayout) newParticipant.findViewById(R.id.relativeLayoutParticipantInfo);
@@ -101,13 +122,13 @@ public class MatchPresenterFragment extends Fragment {
             largestCrit.setText("Largest Crit: "+participant.getLargestCriticalStrike());
             totalMinionsKilled.setText("Total Minions: "+participant.getTotalMinionsKilled());
             damageDealtToChamps.setText("Damage To Champs: "+participant.getTotalDamageDealtToChampions());
-            crowdControlDone.setText("CC Done: "+participant.getTotalTimeCrowdControlDealt());
+            crowdControlDone.setText("CC Done: "+participant.getTotalTimeCrowdControlDealt()+" sec");
             wardsPlaced.setText("Wards Placed: " + participant.getWardsPlaced());
 
-            if (participant.getTeamId() == 100) relativeLayout.setBackgroundColor(R.color.blue_600);
-            else relativeLayout.setBackgroundColor(R.color.red_600);
+            if (participant.getTeamId() == 100) relativeLayout.setBackgroundColor(Color.parseColor("#7785EF"));
+            else relativeLayout.setBackgroundColor(Color.parseColor("#CB7777"));
 
-            scrollView.addView(newParticipant);
+            linearLayout.addView(newParticipant);
 
         }
 
@@ -127,7 +148,8 @@ public class MatchPresenterFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String dummy) {
-
+            ProgressBar bar = (ProgressBar) getActivity().findViewById(R.id.progressBarLoadingMatch);
+            bar.setVisibility(ProgressBar.INVISIBLE);
             showGUI();
 
         }

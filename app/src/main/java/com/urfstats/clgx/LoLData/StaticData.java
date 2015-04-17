@@ -39,9 +39,6 @@ public class StaticData implements Serializable {
                         }
                     }
 
-                    System.out.println(champs);
-
-
                 } catch (Exception e) {
                     System.out.println(e);
                 }

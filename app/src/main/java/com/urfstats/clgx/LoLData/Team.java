@@ -85,6 +85,10 @@ public class Team implements Serializable {
         return bans;
     }
 
+    public boolean isWinner() {
+        return winner;
+    }
+
     /*@Override
     public String toString() {
         return "Team{" +

@@ -243,7 +243,71 @@ public class Game implements Serializable {
         switch(position) {
 
             case 0:
+                stat = this.totalKills();
+                break;
 
+            case 1:
+                stat = this.totalKills();
+                break;
+
+            case 2:
+                stat = this.totalDeaths();
+                break;
+
+            case 3:
+                stat = this.totalDeaths();
+                break;
+
+            case 4:
+                stat = this.goldEarned();
+                break;
+
+            case 5:
+                stat = this.goldEarned();
+                break;
+
+            case 6:
+                stat = this.largestCriticalStrike();
+                break;
+
+            case 7:
+                stat = this.minionsKilled();
+                break;
+
+            case 8:
+                stat = this.minionsKilled();
+                break;
+
+            case 9:
+                stat = this.totalPentaKills();
+                break;
+
+            case 10:
+                stat = this.totalDamageToChamps();
+                break;
+
+            case 11:
+                stat = this.totalCrowdControl();
+                break;
+
+            case 12:
+                stat = this.totalWardsPlaced();
+                break;
+
+            case 13:
+                stat = this.totalWardsPlaced();
+                break;
+
+            case 14:
+                stat = this.totalBaronKills();
+                break;
+
+            case 15:
+                stat = this.getMatchDuration();
+                break;
+
+            case 16:
+                stat = this.getMatchDuration();
                 break;
 
         }
@@ -252,7 +316,15 @@ public class Game implements Serializable {
 
     }
 
-    @Override
+    public long getGameId() {
+        return matchId;
+    }
+
+    public Team[] getTeams() {
+        return teams;
+    }
+
+    /*@Override
     public String toString() {
         return "Game{" +
                 "NUMPARTICIPANTS=" + NUMPARTICIPANTS +
@@ -264,5 +336,5 @@ public class Game implements Serializable {
                 ", participants=" + Arrays.toString(participants) +
                 ", teams=" + Arrays.toString(teams) +
                 '}';
-    }
+    }*/
 }

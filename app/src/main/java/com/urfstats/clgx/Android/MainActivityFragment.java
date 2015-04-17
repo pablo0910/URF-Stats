@@ -36,7 +36,7 @@ import java.util.Date;
 public class MainActivityFragment extends Fragment {
 
     private Date date1=null, date2=null;
-    private int hour = 13, minute, day, month, year;
+    private int hour=0, minute=0, day=9, month=4, year=2015;
     TextView date1String, date2String;
 
     public MainActivityFragment() {
@@ -175,16 +175,14 @@ public class MainActivityFragment extends Fragment {
             final Button dateButton1 = (Button) getActivity().findViewById(R.id.datePickerButton1);
             final Button dateButton2 = (Button) getActivity().findViewById(R.id.datePickerButton2);
 
-            if (hour == 13) this.dismiss();
-
             year = yearL;
             month = monthL;
             day = dayL;
             Calendar c = Calendar.getInstance();
             c.set(year, month, day, hour, minute);
             Date date = new Date(c.getTimeInMillis());
-            if (date1 == null) { date1 = date; date1String.setText(date1.toString()); date2String.setText(""); dateButton1.setVisibility(Button.INVISIBLE); hour = 13; }
-            else { date2 = date; date2String.setText(date2.toString()); dateButton2.setVisibility(Button.INVISIBLE); hour = 13; }
+            if (date1 == null) { date1 = date; date1String.setText(date1.toString()); date2String.setText(""); }
+            else { date2 = date; date2String.setText(date2.toString()); }
 
         }
 

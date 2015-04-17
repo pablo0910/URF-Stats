@@ -11,7 +11,7 @@
         android:text="Match Info"
         android:textSize="25sp"
         android:textColor="@color/material_light_blue_A700"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="18dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
@@ -19,24 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
-        android:textColor="@color/deep_orange_800"
+        android:textColor="@color/deep_orange_600"
         android:id="@+id/statTitleMatchPresenter"
-        android:layout_marginTop="33dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Match Info"
-        android:textSize="25sp"
-        android:textColor="@color/material_light_blue_A700"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
     <View
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="70dp"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimaryDark"/>
@@ -44,26 +34,55 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="80dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/participantsContainer">
+        android:layout_marginBottom="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gameIdTextView"
-            android:layout_marginTop="10dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gameDurationTextView"
-            android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gameIdTextView"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gameDurationTextView"
+                android:layout_below="@+id/gameIdTextView"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/teamWinner"
+                android:layout_below="@+id/gameDurationTextView"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/participantsContainer"
+                android:layout_below="@+id/teamWinner"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+
+        </RelativeLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarLoadingMatch"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>

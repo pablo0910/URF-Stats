@@ -99,13 +99,13 @@ public class StatsListActivityFragment extends Fragment {
         final DataController data = new DataController(getActivity().getFilesDir().toString());
         final String[] statsTitle =  { "Craziest Match", "Less Crazy Match", "Most Deaths", "Less Deaths", "Richest Match", "Poorest Match",
                 "Too Strong AutoAttack", "Best Farming Match", "Worst Farming Match", "Most PENTAKILLS", "Too much DMG", "That CC", "Most Vision",
-                "No Vision", "Most Baron Kills", "Longest Match", "Shortest Match", "OP Champ", "Worst Champ" };
+                "No Vision", "Most Baron Kills", "Longest Match", "Shortest Match" }; //"OP Champ", "Worst Champ"
         final String[] statsDescription = { "Shows the match with the majority of the kills", "Shows the match with less kills", "Shows the match with most deaths",
                 "Shows the match with less deaths", "Shows the match with most gold earned", "Shows the match with less money earned", "Shows the match with the largest critical strike",
                 "Shows the match with most minions killed", "Shows the match with less minions killed", "Shows the match with most PENTAKILLS",
                 "Shows the match with most damage dealt to champs", "Shows the match where champs were most time under CrowdControl",
                 "Shows the match with most wards placed", "Shows the match with less wards placed", "Shows the match with most Baron Nashor kills",
-                "Shows the longest match", "Shows the shortest match", "Shows the most banned Champ", "Shows the less banned Champ" };
+                "Shows the longest match", "Shows the shortest match", "Shows the most banned Champ" }; //"Shows the less banned Champ"
 
         mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.statsList);
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(getActivity(), null));
@@ -146,32 +146,13 @@ public class StatsListActivityFragment extends Fragment {
 
     }
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
 
         Intent newActivity = new Intent(getActivity(), MainActivity.class);
         getActivity().startActivity(newActivity);
 
-    }
-
-    private class GetStaticData extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... id) {
-
-            StaticData data = new StaticData();
-            data.getChamps();
-
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String dummy) {
-
-        }
-
-    }
+    }*/
 
 }
