@@ -47,7 +47,6 @@ public class GamesGetter extends Service {
 
     public static final String GAMESFILENAME = "/games.bin";
     public static final String STATSFILENAME = "/stats.bin";
-    private long start;
     private ArrayList<Game> games = new ArrayList<>();
     private URFStatistics stats = new URFStatistics(games);
     private Date date;
