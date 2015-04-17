@@ -79,7 +79,6 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dateButton1.setVisibility(Button.INVISIBLE);
                 MainActivityFragment.DatePickerFragment datePicker = new MainActivityFragment.DatePickerFragment();
                 datePicker.show(getActivity().getSupportFragmentManager(), "datePicker1");
                 MainActivityFragment.TimePickerFragment timePicker = new MainActivityFragment.TimePickerFragment();
@@ -93,7 +92,6 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dateButton2.setVisibility(Button.INVISIBLE);
                 MainActivityFragment.DatePickerFragment datePicker = new MainActivityFragment.DatePickerFragment();
                 datePicker.show(getActivity().getSupportFragmentManager(), "datePicker2");
                 MainActivityFragment.TimePickerFragment timePicker = new MainActivityFragment.TimePickerFragment();
@@ -174,14 +172,17 @@ public class MainActivityFragment extends Fragment {
 
         public void onDateSet(DatePicker view, int yearL, int monthL, int dayL) {
 
+            final Button dateButton1 = (Button) getActivity().findViewById(R.id.datePickerButton1);
+            final Button dateButton2 = (Button) getActivity().findViewById(R.id.datePickerButton2);
+
             year = yearL;
             month = monthL;
             day = dayL;
             Calendar c = Calendar.getInstance();
             c.set(year, month, day, hour, minute);
             Date date = new Date(c.getTimeInMillis());
-            if (date1 == null) { date1 = date; date1String.setText(date1.toString()); date2String.setText(""); }
-            else { date2 = date; date2String.setText(date2.toString()); }
+            if (date1 == null) { date1 = date; date1String.setText(date1.toString()); date2String.setText(""); dateButton1.setVisibility(Button.INVISIBLE); }
+            else { date2 = date; date2String.setText(date2.toString()); dateButton2.setVisibility(Button.INVISIBLE); }
 
         }
 

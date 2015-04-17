@@ -148,6 +148,23 @@ public class StatsListActivityFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!StatsListActivity.DATAREADY && !new File(getActivity().getFilesDir(),GamesGetter.STATSFILENAME).exists()) {
+
+            ProgressBar bar = (ProgressBar) getActivity().findViewById(R.id.retrievingDataProgressBar);
+            TextView textView = (TextView) getActivity().findViewById(R.id.retrievingDataTextView);
+
+            mRecyclerView.setVisibility(RecyclerView.VISIBLE);
+            bar.setVisibility(ProgressBar.INVISIBLE);
+            textView.setVisibility(TextView.INVISIBLE);
+
+        }
+
+    }
+
     private class GetStaticData extends AsyncTask<String, Void, String> {
 
         @Override
