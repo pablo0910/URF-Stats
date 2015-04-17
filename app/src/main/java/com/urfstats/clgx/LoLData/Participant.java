@@ -180,6 +180,18 @@ public class Participant implements Serializable {
         return wardsPlaced;
     }
 
+    public int getChampionId() {
+        return championId;
+    }
+
+    public long getChampLevel() {
+        return champLevel;
+    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
     @Override
     public String toString() {
         return "Participant{" +

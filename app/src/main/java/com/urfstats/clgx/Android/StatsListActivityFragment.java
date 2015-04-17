@@ -76,9 +76,6 @@ public class StatsListActivityFragment extends Fragment {
         ProgressBar bar = (ProgressBar) getActivity().findViewById(R.id.retrievingDataProgressBar);
         TextView textView = (TextView) getActivity().findViewById(R.id.retrievingDataTextView);
 
-        StatsListActivityFragment.GetStaticData staticData = new GetStaticData();
-        staticData.execute();
-
         if (date1!=null && date2!=null) {
 
             Intent alarmIntent = new Intent(getActivity(), GamesGetter.class);
@@ -126,6 +123,7 @@ public class StatsListActivityFragment extends Fragment {
                 Bundle game = new Bundle();
                 game.putString("statTitle", statsTitle[position]);
                 game.putSerializable("match", data.getStats().getStatistics().get(position).game);
+                game.putInt("position", position);
                 gameShower.putExtras(game);
                 getActivity().startActivity(gameShower);
 

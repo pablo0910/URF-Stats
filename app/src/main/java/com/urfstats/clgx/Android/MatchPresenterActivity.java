@@ -26,7 +26,7 @@ public class MatchPresenterActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(dateContainer.getString("statTitle"));
 
-        fragment = MatchPresenterFragment.newInstance((Game) dateContainer.getSerializable("match"));
+        fragment = MatchPresenterFragment.newInstance((Game) dateContainer.getSerializable("match"), dateContainer.getInt("position"), dateContainer.getString("statTitle"));
         getSupportFragmentManager().beginTransaction().replace(R.id.containerMatchPresenterActivity, fragment).commit();
 
     }

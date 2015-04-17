@@ -10,8 +10,8 @@ import java.util.Arrays;
 
 public class Game implements Serializable {
 
-    private final int NUMPARTICIPANTS = 10;
-    private final int NUMTEAMS = 2;
+    public static final int NUMPARTICIPANTS = 10;
+    public static final int NUMTEAMS = 2;
 
     private long matchId;
     private String region;
@@ -44,9 +44,9 @@ public class Game implements Serializable {
 
     private void createParticipants(JSONArray participants) {
 
-        this.participants = new Participant[this.NUMPARTICIPANTS];
+        this.participants = new Participant[NUMPARTICIPANTS];
 
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             try {
 
@@ -85,7 +85,7 @@ public class Game implements Serializable {
     public long totalKills() {
 
         long numKills = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             numKills += participants[i].getKills();
 
@@ -98,7 +98,7 @@ public class Game implements Serializable {
     public long totalDeaths() {
 
         long numDeaths = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             numDeaths += participants[i].getDeaths();
 
@@ -111,7 +111,7 @@ public class Game implements Serializable {
     public long goldEarned() {
 
         long goldEarned = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             goldEarned += participants[i].getGoldEarned();
 
@@ -124,7 +124,7 @@ public class Game implements Serializable {
     public long largestCriticalStrike() {
 
         long largestCrit = participants[0].getLargestCriticalStrike();
-        for (int i=1; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=1; i < NUMPARTICIPANTS; i++) {
 
             if (((Long) largestCrit).compareTo((Long) participants[i].getLargestCriticalStrike()) < 0) {
 
@@ -141,7 +141,7 @@ public class Game implements Serializable {
     public long minionsKilled() {
 
         long minionsKilled = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             minionsKilled += participants[i].getTotalMinionsKilled();
 
@@ -154,7 +154,7 @@ public class Game implements Serializable {
     public long totalPentaKills() {
 
         long pentaKills = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             pentaKills += participants[i].getPentaKills();
 
@@ -167,7 +167,7 @@ public class Game implements Serializable {
     public long totalDamageToChamps() {
 
         long totalDmg = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             totalDmg += participants[i].getTotalDamageDealtToChampions();
 
@@ -180,7 +180,7 @@ public class Game implements Serializable {
     public long totalCrowdControl() {
 
         long totalCC = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             totalCC += participants[i].getTotalTimeCrowdControlDealt();
 
@@ -193,7 +193,7 @@ public class Game implements Serializable {
     public long totalWardsPlaced() {
 
         long totalWards = 0;
-        for (int i=0; i < this.NUMPARTICIPANTS; i++) {
+        for (int i=0; i < NUMPARTICIPANTS; i++) {
 
             totalWards += participants[i].getWardsPlaced();
 
@@ -206,7 +206,7 @@ public class Game implements Serializable {
     public long totalBaronKills() {
 
         long baronKills = 0;
-        for (int i=0; i < this.NUMTEAMS; i++) {
+        for (int i=0; i < NUMTEAMS; i++) {
 
             baronKills += teams[i].getBaronKills();
 
@@ -231,6 +231,26 @@ public class Game implements Serializable {
     }
 
     public long getMatchDuration() { return this.matchDuration; }
+
+    public Participant[] getParticipants() {
+        return participants;
+    }
+
+    public long getStat(int position) {
+
+        long stat=0;
+
+        switch(position) {
+
+            case 0:
+
+                break;
+
+        }
+
+        return stat;
+
+    }
 
     @Override
     public String toString() {
