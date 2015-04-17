@@ -17,8 +17,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import com.urfstats.clgx.LoLData.URFGames;
 import com.urfstats.clgx.R;
 
 import java.io.File;
