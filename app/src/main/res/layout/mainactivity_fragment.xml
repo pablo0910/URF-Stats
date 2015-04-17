@@ -23,41 +23,121 @@
         android:layout_height="1dp"
         android:background="@color/colorPrimaryDark"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/appDescription"
-        android:id="@+id/appExplanation"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/mainfragmentcontainer"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginTop="33dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Dates"
-        android:id="@+id/datePickerButton"
-        android:layout_below="@+id/appExplanation"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.urfstats.clgx.Android.MainActivityFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/datesAdvice"
-        android:textSize="12sp"
-        android:textColor="@color/red_800"
-        android:id="@+id/appAdvice"
-        android:layout_below="@+id/datePickerButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appDescription"
+                android:id="@+id/appExplanation"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Begin Date"
+                android:id="@+id/datePickerButton1"
+                android:layout_below="@+id/appExplanation"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="33dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:id="@+id/date1String"
+                android:layout_below="@+id/datePickerButton1"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set End Date"
+                android:id="@+id/datePickerButton2"
+                android:layout_below="@+id/date1String"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="33dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:id="@+id/date2String"
+                android:layout_below="@+id/datePickerButton2"
+                android:layout_centerHorizontal="true"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date2String"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/centerButtonsRelativeLayout"
+                android:layout_marginTop="33dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show Stats"
+                    android:textColor="@android:color/holo_green_light"
+                    android:id="@+id/showOldStatsButton" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create Stats"
+                    android:id="@+id/startStatsListActivity"
+                    android:layout_toRightOf="@+id/showOldStatsButton"
+                    android:layout_toEndOf="@+id/showOldStatsButton"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reset Dates"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:id="@+id/resetDatesButton"
+                    android:layout_toRightOf="@+id/startStatsListActivity"
+                    android:layout_toEndOf="@+id/startStatsListActivity"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/datesAdvice"
+                android:textSize="12sp"
+                android:textColor="@color/red_800"
+                android:id="@+id/appAdvice"
+                android:layout_below="@+id/centerButtonsRelativeLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="33dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

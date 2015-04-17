@@ -48,7 +48,8 @@ public class MatchPresenterFragment extends Fragment {
         super.onActivityCreated(state);
 
         TextView tv = (TextView) getActivity().findViewById(R.id.matchContainer);
-        tv.setText(match.toString());
+        if (match!=null) tv.setText(match.toString());
+        else tv.setText("No matches were loaded.\nTry with another date.");
 
     }
 

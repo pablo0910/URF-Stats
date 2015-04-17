@@ -189,7 +189,6 @@ public class GamesGetter extends Service {
 
                             RiotApiConnection con = new RiotApiConnection("euw", "api.pvp.net/api/lol/euw/v2.2/match/"+all.get(i));
                             con.sendGet();
-                            System.out.println(con.valueReturn);
                             Game g1;
                             if (con.valueReturn!=null) {
 
