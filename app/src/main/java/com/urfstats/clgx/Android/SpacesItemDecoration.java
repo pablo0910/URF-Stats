@@ -1,5 +1,16 @@
 package com.urfstats.clgx.Android;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class contains an Item separator for RecyclerView.
+*   Taken from: https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36
+*
+ */
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;

@@ -1,5 +1,15 @@
 package com.urfstats.clgx.Android;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class is the Application's Main Activity.
+*
+ */
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;

@@ -1,14 +1,10 @@
 package com.urfstats.clgx.Android;
 
 import android.annotation.SuppressLint;
-import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -22,12 +18,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.urfstats.clgx.Core.DataController;
-import com.urfstats.clgx.LoLData.StaticData;
 import com.urfstats.clgx.LoLData.URFGames;
 import com.urfstats.clgx.R;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.Calendar;

@@ -1,10 +1,19 @@
 package com.urfstats.clgx.Android;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class is an Adapter for RecyclerView.
+*
+ */
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.urfstats.clgx.R;

@@ -1,6 +1,15 @@
 package com.urfstats.clgx.Android;
 
-import android.annotation.SuppressLint;
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class is the Fragment which shows all info related with a Game.
+*
+ */
+
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.urfstats.clgx.LoLData.Game;
@@ -69,7 +77,6 @@ public class MatchPresenterFragment extends Fragment {
 
     }
 
-    @SuppressLint("ResourceAsColor")
     private void showGUI() {
 
         LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.participantsContainer);

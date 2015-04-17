@@ -1,7 +1,16 @@
 package com.urfstats.clgx.Android;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class is the service which retrieves Game Info.
+*
+ */
+
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,7 +25,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.widget.Toast;
 
 import com.urfstats.clgx.LoLData.Game;
-import com.urfstats.clgx.LoLData.StaticData;
 import com.urfstats.clgx.LoLData.URFStatistics;
 import com.urfstats.clgx.R;
 import com.urfstats.clgx.Utilities.RiotApiConnection;
@@ -33,7 +41,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class GamesGetter extends Service {
@@ -125,17 +132,12 @@ public class GamesGetter extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setOngoing(true);
 
-        // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, StatsListActivity.class);
 
-        // The stack builder object will contain an artificial back stack for the
-        // started Activity.
-        // This ensures that navigating backward from the Activity leads out of
-        // your application to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        // Adds the back stack for the Intent (but not the Intent itself)
+
         stackBuilder.addParentStack(MainActivity.class);
-        // Adds the Intent that starts the Activity to the top of the stack
+
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(

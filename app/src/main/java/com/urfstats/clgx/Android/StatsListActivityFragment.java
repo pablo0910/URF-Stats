@@ -1,11 +1,17 @@
 package com.urfstats.clgx.Android;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class is the Fragment which shows a RecicleView containing all possible stats.
+*
+ */
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
+
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.urfstats.clgx.Core.DataController;
-import com.urfstats.clgx.LoLData.StaticData;
 import com.urfstats.clgx.R;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.Date;

@@ -1,10 +1,19 @@
 package com.urfstats.clgx.LoLData;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class stores info about each Participant in a LoL Game.
+*
+ */
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Participant implements Serializable {
 
@@ -192,7 +201,7 @@ public class Participant implements Serializable {
         return teamId;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Participant{" +
                 "NUMITEMS=" + NUMITEMS +
@@ -229,5 +238,5 @@ public class Participant implements Serializable {
                 ", csDiffPerMinDeltas=" + csDiffPerMinDeltas +
                 ", goldPerMinDeltas=" + goldPerMinDeltas +
                 '}';
-    }
+    }*/
 }

@@ -1,12 +1,21 @@
 package com.urfstats.clgx.Android;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class is the Activity which shows the Fragment StatsListActivityFragment.
+*
+ */
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.urfstats.clgx.R;
 
-import java.io.File;
 import java.util.Date;
 
 public class StatsListActivity extends ActionBarActivity {

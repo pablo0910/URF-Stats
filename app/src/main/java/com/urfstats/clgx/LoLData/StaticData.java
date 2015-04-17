@@ -1,5 +1,15 @@
 package com.urfstats.clgx.LoLData;
 
+/*
+*   Class Made by pablo0910 - 2015
+*   GitHub: https://github.com/pablo0910
+*   Mail: pablo0910@hotmail.com
+*   Class Done for Riot Api Challenge 2015
+*
+*   This class stores some Static Data from LoL Api such as Name-Id Champions
+*
+ */
+
 
 import com.urfstats.clgx.Utilities.RiotApiConnection;
 
